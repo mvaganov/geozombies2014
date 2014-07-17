@@ -4,6 +4,7 @@ using System.Collections;
 public class Hittable : MonoBehaviour {
 	public int hitpoints = 10;
 	public GameObject graphics;
+	public string damageFromType;
 	// Use this for initialization
 	void Start () {
 	}
@@ -11,14 +12,16 @@ public class Hittable : MonoBehaviour {
 	void Update () {
 	}
 	/// <summary>called whenever this wall should count as being hit</summary>
-	public void MakeHit() {
-		graphics.renderer.material.color = new Color (
-			Random.Range (0, 1f),
-			Random.Range (0, 1f),
-			Random.Range (0, 1f));
-		hitpoints --;
-		if(hitpoints <= 0) {
-			Destroy(gameObject);
+	public void MakeHit(string type) {
+		if(type == damageFromType) {
+			graphics.renderer.material.color = new Color (
+				Random.Range (0, 1f),
+				Random.Range (0, 1f),
+				Random.Range (0, 1f));
+			hitpoints --;
+			if(hitpoints <= 0) {
+				Destroy(gameObject);
+			}
 		}
 	}
 //	void OnCollisionEnter(Collision col) {

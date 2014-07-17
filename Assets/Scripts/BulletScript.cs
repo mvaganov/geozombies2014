@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BulletMonitor : MonoBehaviour {
+public class BulletScript : MonoBehaviour {
 	GameObject hitLine;
+	public string type;
 	void Start () {
 	}
 	void Update () {
@@ -25,7 +26,7 @@ public class BulletMonitor : MonoBehaviour {
 			// insert collision code here
 			Hittable hw = rh.collider.gameObject.GetComponent<Hittable>();
 			if(hw != null) {
-				hw.MakeHit();
+				hw.MakeHit(type);
 			}
 		}
 	}
