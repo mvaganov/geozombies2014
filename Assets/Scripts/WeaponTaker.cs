@@ -11,7 +11,7 @@ public class WeaponTaker : MonoBehaviour {
 		WeaponPowerup w = hit.collider.gameObject.GetComponent<WeaponPowerup> ();
 		if(w) {
 			gun.bullet = w.bulletType;
-			print(w);
+//			print(w);
 		}
 	}
 }
