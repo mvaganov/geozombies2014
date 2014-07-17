@@ -7,6 +7,7 @@ public class Hittable : MonoBehaviour {
 	public string damageFromType;
 	public GameObject deathParticle;
 	public GameObject onHitParticle;
+	public AudioClip hitNoise, deathNoise;
 	// Use this for initialization
 	void Start () {
 	}
@@ -29,10 +30,16 @@ public class Hittable : MonoBehaviour {
 						deathParticle, transform.position, Quaternion.identity);
 					Destroy(go, 10);
 				}
+				if(deathNoise) {
+					PlaySound.Play(deathNoise, transform);
+				}
 				Destroy(gameObject);
 			} else if(onHitParticle) {
 				GameObject go = (GameObject)Instantiate(
 					onHitParticle, doingTheHitting.transform.position, Quaternion.identity);
+				if(hitNoise) {
+					PlaySound.Play(hitNoise, doingTheHitting.transform);
+				}
 				Destroy(go, 10);
 			}
 			Destroy(doingTheHitting);
