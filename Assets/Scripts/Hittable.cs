@@ -5,6 +5,8 @@ public class Hittable : MonoBehaviour {
 	public int hitpoints = 10;
 	public GameObject graphics;
 	public string damageFromType;
+	public GameObject deathParticle;
+	public GameObject onHitParticle;
 	// Use this for initialization
 	void Start () {
 	}
@@ -12,7 +14,7 @@ public class Hittable : MonoBehaviour {
 	void Update () {
 	}
 	/// <summary>called whenever this wall should count as being hit</summary>
-	public void MakeHit(string type) {
+	public void MakeHit(string type, GameObject doingTheHitting) {
 		if(type == damageFromType) {
 			if(graphics != null) {
 				graphics.renderer.material.color = new Color (
@@ -22,8 +24,18 @@ public class Hittable : MonoBehaviour {
 			}
 			hitpoints --;
 			if(hitpoints <= 0) {
+				if(deathParticle) {
+					GameObject go = (GameObject)Instantiate(
+						deathParticle, transform.position, Quaternion.identity);
+					Destroy(go, 10);
+				}
 				Destroy(gameObject);
+			} else if(onHitParticle) {
+				GameObject go = (GameObject)Instantiate(
+					onHitParticle, doingTheHitting.transform.position, Quaternion.identity);
+				Destroy(go, 10);
 			}
+			Destroy(doingTheHitting);
 		}
 	}
 //	void OnCollisionEnter(Collision col) {

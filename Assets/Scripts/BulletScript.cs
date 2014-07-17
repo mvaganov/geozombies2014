@@ -26,7 +26,7 @@ public class BulletScript : MonoBehaviour {
 			// insert collision code here
 			Hittable hw = rh.collider.gameObject.GetComponent<Hittable>();
 			if(hw != null) {
-				hw.MakeHit(type);
+				hw.MakeHit(type, gameObject);
 			}
 		}
 	}
