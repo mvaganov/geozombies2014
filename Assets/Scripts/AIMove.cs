@@ -48,9 +48,11 @@ public class AIMove : MonoBehaviour {
 			timer = 0;
 		}
 		transform.LookAt(targetLocation);
-		Lines.Make (ref deltaLine, graphics.renderer.material.color, 
-		           transform.position - transform.up, targetLocation, 1, 0);
-		deltaLine.transform.parent = transform; // so the blue line disappears with it
 		cc.SimpleMove (delta.normalized * maxSpeed);
+		if(graphics != null) {
+			Lines.Make (ref deltaLine, graphics.renderer.material.color, 
+			           transform.position - transform.up, targetLocation, 1, 0);
+			deltaLine.transform.parent = transform; // so the blue line disappears with it
+		}
 	}
 }

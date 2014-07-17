@@ -14,10 +14,12 @@ public class Hittable : MonoBehaviour {
 	/// <summary>called whenever this wall should count as being hit</summary>
 	public void MakeHit(string type) {
 		if(type == damageFromType) {
-			graphics.renderer.material.color = new Color (
-				Random.Range (0, 1f),
-				Random.Range (0, 1f),
-				Random.Range (0, 1f));
+			if(graphics != null) {
+				graphics.renderer.material.color = new Color (
+					Random.Range (0, 1f),
+					Random.Range (0, 1f),
+					Random.Range (0, 1f));
+			}
 			hitpoints --;
 			if(hitpoints <= 0) {
 				Destroy(gameObject);
