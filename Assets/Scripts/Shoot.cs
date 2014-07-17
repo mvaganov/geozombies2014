@@ -6,6 +6,7 @@ public class Shoot : MonoBehaviour {
 	public GameObject bullet;
 	public float speed = 100; // how fast bullets go
 	public float maxDuration = 5; // seconds before bullet dies
+	public AudioClip shootNoise;
 
 	// Use this for initialization
 	void Start () {
@@ -19,6 +20,9 @@ public class Shoot : MonoBehaviour {
 				bullet, transform.position, transform.rotation); 	
 			go.rigidbody.velocity = transform.forward * speed;
 			Destroy (go, maxDuration);
+			if(shootNoise) {
+				PlaySound.Play(shootNoise, transform);
+			}
 		}
 	}
 }
