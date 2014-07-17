@@ -13,5 +13,9 @@ public class WeaponTaker : MonoBehaviour {
 			gun.bullet = w.bulletType;
 //			print(w);
 		}
+		LevelJump lj = hit.collider.gameObject.GetComponent<LevelJump> ();
+		if(lj) {
+			Application.LoadLevel(lj.nextLevelName);
+		}
 	}
 }
